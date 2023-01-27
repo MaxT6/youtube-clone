@@ -1,8 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import SideBar from './SideBar';
+import { SideBar, Videos } from './';
+
+import { fetchFromApi } from '../utils/fetchFromAPI';
 
 const Feed = () => {
+
+  const [selectedCategory, setSelectedCategory] = useState('New')
+
+  useEffect(() => {
+    fetchFromApi(`search?part=snippet&q=${selectedCategory}`)
+  }, [])
+
   return (
     <Stack sx={{
       flexDirection: { 
@@ -24,6 +33,17 @@ const Feed = () => {
         variant="body2" sx={{ mt: 1.5, color: '#fff' }}>
           Copyright 2023 MT Media
         </Typography>
+      </Box>
+      <Box p={2} sx={{ overflow: 'auto', height: '90vh', flex: 2}}>
+        <Typography variant="h4"
+          fontWeight="bold" mb={2} sx={{
+            color: 'white'}}
+            >
+           New <span style={{color: '#F31503'}}>
+            vidoes
+          </span>
+        </Typography>
+        <Videos videos={[]} />
       </Box>
     </Stack>
 
