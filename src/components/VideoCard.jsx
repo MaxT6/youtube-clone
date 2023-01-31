@@ -2,19 +2,21 @@ import { Link } from 'react-router-dom';
 import { Typography, Card, CardContent, CardMedia } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
 
-import { demoThumbnailUrl, demoVideoUrl, demoVideoTitle, demoChannelUrl, demoChannelTitle } from '../utils/constants';
+import { demoVideoUrl, demoVideoTitle, demoChannelUrl, demoChannelTitle } from '../utils/constants';
 
 
 //below we are deconstructing the props resceived from the API. By using keyname:{}  we are only taking the selected key/valus pairs and leaving the rest
 const VideoCard = ({ video: { id: { videoId}, snippet } }) => {
 
   return (
-    <Card sx={{ width: { md: '320px', xs: '100%' }, boxShadow: 'none', boderRadius: 0}} >
+    <Card sx={{ width: { xs: '100%', sm: '358px', md: '320px' }, boxShadow: 'none', boderRadius: 0}} >
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl} >
         <CardMedia
         image={snippet?.thumbnails?.high?.url}
         alt={snippet?.title}
-        sx={{ width: 358, height: 180 }} 
+        sx={{ width: {
+          xs: '100%', sm: '358px', md: '320px'
+        }, height: 180 }} 
         /> 
       </Link>
       <CardContent sx={{ backgroundColor: '#1e1e1e', height: '106px' }}>
